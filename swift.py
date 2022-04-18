@@ -14,10 +14,10 @@ print("input x:x then stopped")
 domainClassName = prefix + domainName
 f.write(f"struct {domainClassName} (\n")
 while True:
-    fieldName, typeOfField = map(str, input().split(":"))
-    if fieldName == breakConstant or typeOfField == breakConstant:
-        break
-    f.write(f"let {fieldName}:{typeOfField},\n")
+	fieldName, typeOfField = map(str, input().split(":"))
+	if fieldName == breakConstant or typeOfField == breakConstant:
+	    break
+	f.write(f"let {fieldName}:{typeOfField},\n")
 f.write(")\n")
 f.close()
 
@@ -26,8 +26,8 @@ repositoryClassName = prefix+domainName+"Repository"
 f = open(f"./{repositoryClassName}.{language}", "w")
 f.write(f"protocol {repositoryClassName} {{\n")
 f.write(f"func fetch{domainName}s() -> Single<[{domainName}]>\n")
-f.write(f"func save{domainName}s({paramsDomainName}s: [{domainName}]) -> Completable {{}}\n")
-f.write(f"func delete{domainName}s({paramsDomainName}s: [{domainName}]) -> Completable {{}}\n")
+f.write(f"func save{domainName}s({paramsDomainName}s: [{domainName}]) -> Completable\n")
+f.write(f"func delete{domainName}s({paramsDomainName}s: [{domainName}]) -> Completable\n")
 f.write("}\n")
 f.close()
 
@@ -62,16 +62,16 @@ f.close()
 
 # Create Data Layer
 print("create data source file")
-dataSourceClassName = prefix+domainName+"DataSoure"
+dataSourceClassName = prefix+domainName+"DataSource"
 f = open(f"./{dataSourceClassName}.{language}", "w")
 f.write(f"protocol {dataSourceClassName} {{\n")
 f.write(f"func fetch{domainName}s() -> Single<[{domainName}]>\n")
-f.write(f"func save{domainName}s({paramsDomainName}s: [{domainName}]) -> Completable {{}}\n")
-f.write(f"func delete{domainName}s({paramsDomainName}s: [{domainName}]) -> Completable {{}}\n")
+f.write(f"func save{domainName}s({paramsDomainName}s: [{domainName}]) -> Completable\n")
+f.write(f"func delete{domainName}s({paramsDomainName}s: [{domainName}]) -> Completable\n")
 f.write("}\n")
 f.close()
 
-remoteDataSourceClassName = prefix+domainName+"RemoteDataSoure"
+remoteDataSourceClassName = prefix+domainName+"RemoteDataSource"
 f = open(f"./{remoteDataSourceClassName}.{language}", "w")
 f.write(f"final class {remoteDataSourceClassName}(): {dataSourceClassName} {{\n")
 f.write(f"override func fetch{domainName}s() -> Single<[{domainName}]> {{}}\n")
@@ -80,7 +80,7 @@ f.write(f"override func delete{domainName}s({paramsDomainName}s: [{domainName}])
 f.write("}\n")
 f.close()
 
-localDataSourceClassName = prefix+domainName+"LocalDataSoure"
+localDataSourceClassName = prefix+domainName+"LocalDataSource"
 f = open(f"./{localDataSourceClassName}.{language}", "w")
 f.write(f"final class {localDataSourceClassName}(): {dataSourceClassName} {{\n")
 f.write(f"override func fetch{domainName}s() -> Single<[{domainName}]> {{}}\n")
