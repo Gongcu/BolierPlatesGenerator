@@ -43,7 +43,7 @@ f = open(f"./{domainGroupFolderName}/{repositoryFolderName}/{repositoryClassName
 f.write(f"import BuzzRxSwift\n\n")
 f.write(f"protocol {repositoryClassName} {{\n")
 if command.read():
-	f.write(f"  func fetch{domainName}s() -> Observabld<[{domainName}]>\n")
+	f.write(f"  func fetch{domainName}s() -> Observable<[{domainName}]>\n")
 if command.create():
 	f.write(f"  func save{domainName}s({paramsDomainName}s: [{domainName}]) -> Observable<Void>\n")
 if command.delete():
@@ -59,7 +59,7 @@ if command.read():
 	f.write(f"class {fetchUseCaseClassName} {{\n")
 	f.write(f"  private let repository: {repositoryClassName}\n\n")
 	f.write(f"  init(repository: {repositoryClassName}) {{ self.repository = repository }}\n\n")
-	f.write(f"  func invoke() -> Observable<[{domainName}]> {{ }}\n")
+	f.write(f"  func execute() -> Observable<[{domainName}]> {{ }}\n")
 	f.write("}\n")
 	f.close()
 
@@ -70,7 +70,7 @@ if command.create():
 	f.write(f"class {saveUseCaseClassName} {{\n")
 	f.write(f"  private let repository: {repositoryClassName}\n\n")
 	f.write(f"  init(repository: {repositoryClassName}) {{ self.repository = repository }}\n\n")
-	f.write(f"  func invoke({paramsDomainName}s: [{domainName}]) -> Observable<Void> {{ }}\n")
+	f.write(f"  func execute({paramsDomainName}s: [{domainName}]) -> Observable<Void> {{ }}\n")
 	f.write("}\n")
 	f.close()
 
@@ -81,7 +81,7 @@ if command.delete():
 	f.write(f"class {deleteUseCaseClassName} {{\n")
 	f.write(f"  private let repository: {repositoryClassName}\n\n")
 	f.write(f"  init(repository: {repositoryClassName}) {{ self.repository = repository }}\n\n")
-	f.write(f"  func invoke({paramsDomainName}s: [{domainName}]) -> Observable<Void> {{ }}\n")
+	f.write(f"  func execute({paramsDomainName}s: [{domainName}]) -> Observable<Void> {{ }}\n")
 	f.write("}\n")
 	f.close()
 
